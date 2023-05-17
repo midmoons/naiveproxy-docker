@@ -39,6 +39,8 @@ generate_random_port() {
 }
 
 config_env() {
+    read -p "输入备注: " comment
+
     read -p "输入域名(example.com): " zone
     if [ -z $zone ]; then
         echo "域名输入错误"
@@ -88,6 +90,8 @@ config_env() {
     echo "PASS=$nppass" >> .env
     echo "PORT=$npport" >> .env
     echo "DISGUISE=$npdisguise" >> .env
+
+    echo https://$(echo "$npuser:$nppass@$sub_domain.$zone:$npport" | base64)#$(echo "$comment" | tr -d '\n' | xxd -plain | sed 's/\(..\)/%\1/g') > np.conf
 }
 
 install_dep() {
@@ -103,6 +107,8 @@ install_docker() {
     curl -fsSL https://get.docker.com | sh
 }
 
+install_dep
+
 if [ ! -e ".env" ]; then
     config_env
 fi
@@ -111,12 +117,12 @@ if ! command -v docker &> /dev/null; then
     install_docker
 fi
 
-install_dep
-
 docker_compose_url="https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/docker-compose.yaml"
 caddy_file_url="https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/caddy/Caddyfile"
 
 curl -o "docker-compose.yaml" -L "$docker_compose_url"
 curl -o "caddy/Caddyfile" -L "$caddy_file_url"
 
-docker compose up
+docker compose up -d
+
+cat np.conf
