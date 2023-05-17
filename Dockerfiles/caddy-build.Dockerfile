@@ -10,7 +10,7 @@ RUN git clone https://github.com/caddyserver/xcaddy.git && \
 
 RUN /app/xcaddy/cmd/xcaddy/xcaddy build \
     --output /usr/local/bin/caddy \
-    --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive --with github.com/caddy-dns/cloudflare --with github.com/mholt/caddy-dynamicdns
+    --with github.com/caddy-dns/cloudflare --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive --with github.com/mholt/caddy-dynamicdns
 
 FROM alpine:latest
 

@@ -1,6 +1,5 @@
 {
 	order forward_proxy before file_server
-	# acme_dns cloudflare {$CFAPITOKEN}
 	dynamic_dns {
 		provider cloudflare {$CFAPITOKEN}
 		domains {

@@ -4,7 +4,8 @@ services:
   np:
     image: bankroftvayne/naiveproxy-container:latest
     volumes:
-      - "./caddy:/etc/caddy/"
+      - "./caddy/Caddyfile:/etc/caddy/Caddyfile"
+      - "./caddy/storage:/root/.local/share/caddy"
     ports:
       - ${PORT}:443
     command: "caddy run --config /etc/caddy/Caddyfile"

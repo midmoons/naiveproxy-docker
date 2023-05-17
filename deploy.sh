@@ -1,10 +1,10 @@
 #!/bin/bash
 
-mkdir np-docker && cd np-docker && mkdir caddy
+mkdir caddy
 
-generate_random_string() {
+generate_random_string_ll() {
     local length=$1
-    local characters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    local characters='abcdefghijklmnopqrstuvwxyz'
     local result=""
 
     for (( i=0; i < length; i++ )); do
@@ -15,9 +15,9 @@ generate_random_string() {
     echo "$result"
 }
 
-generate_random_string_cpl() {
+generate_random_string() {
     local length=$1
-    local characters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?'
+    local characters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     local result=""
 
     for (( i=0; i < length; i++ )); do
@@ -45,7 +45,7 @@ config_env() {
         exit 0
     fi
 
-    sub_domain=$(generate_random_string "12")
+    sub_domain=$(generate_random_string_ll "12")
     read -p "请输入子域名（默认 $sub_domain ）: " isub_domain
     if [[ -n $isub_domain ]]; then
         sub_domain=$isub_domain
@@ -63,7 +63,7 @@ config_env() {
         npuser=$inpuser
     fi
 
-    nppass=$(generate_random_string_cpl "12")
+    nppass=$(generate_random_string "12")
     read -p "请输入密码（默认 $nppass ）: " inppass
     if [[ -n $inppass ]]; then
         nppass=$inppass
