@@ -16,3 +16,4 @@ services:
       - CFAPITOKEN=${CF_API_TOKEN}
       - USER=${USER}
       - PASS=${PASS}
+      - DISGUISE=${DISGUISE}
