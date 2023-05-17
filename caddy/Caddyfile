@@ -1,5 +1,6 @@
 {
 	order forward_proxy before file_server
+	# acme_dns cloudflare {$CFAPITOKEN}
 	dynamic_dns {
 		provider cloudflare {$CFAPITOKEN}
 		domains {
@@ -10,15 +11,9 @@
 
 :443, {$SUBDOMAIN}.{$DOMAIN} {
 	tls {
-		issuer acme {
-			# production
-			# dir https://acme-v02.api.letsencrypt.org/directory
-			# staging
-			dir https://acme-staging-v02.api.letsencrypt.org/directory
-			disable_http_challenge
-			disable_tlsalpn_challenge
-			dns cloudflare {$CFAPITOKEN}
-		}
+		# ca https://acme-staging-v02.api.letsencrypt.org/directory
+		dns cloudflare {$CFAPITOKEN}
+		resolvers 1.1.1.1
 	}
 	forward_proxy {
 		basic_auth {$USER} {$PASS}
