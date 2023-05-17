@@ -1,0 +1,33 @@
+{
+	order forward_proxy before file_server
+	dynamic_dns {
+		provider cloudflare {$CFAPITOKEN}
+		domains {
+			{$DOMAIN} {$SUBDOMAIN}
+		}
+	}
+}
+
+:443, {$SUBDOMAIN}.{$DOMAIN} {
+	tls {
+		issuer acme {
+			# production
+			# dir https://acme-v02.api.letsencrypt.org/directory
+			# staging
+			dir https://acme-staging-v02.api.letsencrypt.org/directory
+			disable_http_challenge
+			disable_tlsalpn_challenge
+			dns cloudflare {$CFAPITOKEN}
+		}
+	}
+	forward_proxy {
+		basic_auth {$USER} {$PASS}
+		hide_ip
+		hide_via
+		probe_resistance
+	}
+	reverse_proxy https://bankroft.github.io {
+		header_up Host {upstream_hostport}
+		#    header_up  X-Forwarded-Host  {host}
+	}
+}

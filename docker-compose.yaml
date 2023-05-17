@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:
+  np:
+    build:
+      context: .
+      dockerfile: ./caddy-build.Dockerfile
+    volumes:
+      - "./caddy:/etc/caddy/"
+    ports:
+      - ${PORT}:443
+    command: "caddy run --config /etc/caddy/Caddyfile"
+    environment:
+      - DOMAIN=${ZONE}
+      - SUBDOMAIN=${SUBDOMAIN}
+      - CFAPITOKEN=${CF_API_TOKEN}
+      - USER=${USER}
+      - PASS=${PASS}
