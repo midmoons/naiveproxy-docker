@@ -118,9 +118,11 @@ if ! command -v docker &> /dev/null; then
 fi
 
 docker_compose_url="https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/docker-compose.yaml"
+
 caddy_file_url="https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/caddy/Caddyfile"
 
 curl -o "docker-compose.yaml" -L "$docker_compose_url"
+
 curl -o "caddy/Caddyfile" -L "$caddy_file_url"
 
 docker compose up -d
