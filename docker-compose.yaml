@@ -13,6 +13,6 @@ services:
       - DOMAIN=${ZONE}
       - SUBDOMAIN=${SUBDOMAIN}
       - CFAPITOKEN=${CF_API_TOKEN}
-      - USER=${USER}
-      - PASS=${PASS}
+      - NPUSER=${NPUSER}
+      - NPPASS=${NPPASS}
       - DISGUISE=${DISGUISE}

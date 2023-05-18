@@ -1,5 +1,6 @@
 {
-	order forward_proxy before file_server
+	order forward_proxy before reverse_proxy
+	admin off
 	dynamic_dns {
 		provider cloudflare {$CFAPITOKEN}
 		domains {
@@ -15,7 +16,7 @@
 		resolvers 1.1.1.1
 	}
 	forward_proxy {
-		basic_auth {$USER} {$PASS}
+		basic_auth {$NPUSER} {$NPPASS}
 		hide_ip
 		hide_via
 		probe_resistance

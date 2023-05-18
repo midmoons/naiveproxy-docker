@@ -86,8 +86,8 @@ config_env() {
     echo "ZONE=$zone" > .env
     echo "SUBDOMAIN=$sub_domain" >> .env
     echo "CF_API_TOKEN=$cf_apitoken" >> .env
-    echo "USER=$npuser" >> .env
-    echo "PASS=$nppass" >> .env
+    echo "NPUSER=$npuser" >> .env
+    echo "NPPASS=$nppass" >> .env
     echo "PORT=$npport" >> .env
     echo "DISGUISE=$npdisguise" >> .env
 
