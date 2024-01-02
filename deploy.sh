@@ -117,9 +117,9 @@ if ! command -v docker &> /dev/null; then
     install_docker
 fi
 
-docker_compose_url="https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/docker-compose.yaml"
+docker_compose_url="https://raw.githubusercontent.com/midmoons/naiveproxy-docker/main/docker-compose.yaml"
 
-caddy_file_url="https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/caddy/Caddyfile"
+caddy_file_url="https://raw.githubusercontent.com/midmoons/naiveproxy-docker/main/caddy/Caddyfile"
 
 curl -o "docker-compose.yaml" -L "$docker_compose_url"
 
