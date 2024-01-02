@@ -1,6 +1,6 @@
 ```bash
 
-curl -fsSL https://raw.githubusercontent.com/bankroft/naiveproxy-docker/main/deploy.sh | bash
+curl -fsSL https://raw.githubusercontent.com/midmoons/naiveproxy-docker/main/deploy.sh | bash
 
 ```
 
